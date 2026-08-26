@@ -14,13 +14,19 @@ export function SiteFooter() {
           <Link to="/about" className="underline-sweep hover:text-foreground">
             About
           </Link>
+          <Link to="/contact" className="underline-sweep hover:text-foreground">
+            Contact
+          </Link>
+          <Link to="/privacy" className="underline-sweep hover:text-foreground">
+            Privacy
+          </Link>
+          <Link to="/terms" className="underline-sweep hover:text-foreground">
+            Terms
+          </Link>
           <Link to="/write" className="underline-sweep hover:text-foreground">
             For writers
           </Link>
-          <Link to="/collections" className="underline-sweep hover:text-foreground">
-            Collections
-          </Link>
-          <Link to="/signup" className="underline-sweep hover:text-foreground">
+          <Link to="/newsletter" className="underline-sweep hover:text-foreground">
             Newsletter
           </Link>
         </div>

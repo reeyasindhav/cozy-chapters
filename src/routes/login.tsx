@@ -17,7 +17,10 @@ export const Route = createFileRoute("/login")({
         content: "Sign in to your Storyvault account to keep your library, streak and reading log.",
       },
       { property: "og:title", content: "Sign in — Storyvault" },
-      { property: "og:description", content: "Sign in to Storyvault to keep reading where you left off." },
+      {
+        property: "og:description",
+        content: "Sign in to Storyvault to keep reading where you left off.",
+      },
     ],
   }),
   component: Login,

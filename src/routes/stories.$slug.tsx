@@ -141,7 +141,10 @@ function StoryPage() {
 
         <div className="mt-10 flex flex-wrap gap-2">
           {story.tags.map((t) => (
-            <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">
+            <span
+              key={t}
+              className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground"
+            >
               #{t}
             </span>
           ))}

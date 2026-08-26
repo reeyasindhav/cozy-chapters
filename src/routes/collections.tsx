@@ -68,7 +68,10 @@ function Collections() {
             <p className="eyebrow">Browse by feeling</p>
             <h2 className="mt-2 font-display text-3xl">Six moods, one shelf each</h2>
           </div>
-          <Link to="/discover" className="flex items-center gap-1.5 text-sm font-semibold text-primary">
+          <Link
+            to="/discover"
+            className="flex items-center gap-1.5 text-sm font-semibold text-primary"
+          >
             Open the vault <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

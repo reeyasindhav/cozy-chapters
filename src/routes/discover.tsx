@@ -60,7 +60,8 @@ function Discover() {
           Browse by <em className="font-light text-clay">mood & minutes</em>
         </h1>
         <p className="animate-fade-up mt-4 max-w-lg text-muted-foreground">
-          {stories.length} stories, all readable in a single sitting. Tell us how much time you have.
+          {stories.length} stories, all readable in a single sitting. Tell us how much time you
+          have.
         </p>
       </section>
 
@@ -121,7 +122,9 @@ function Discover() {
                   key={s}
                   onClick={() => setSort(s)}
                   className={`rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
-                    sort === s ? "bg-secondary font-semibold" : "text-muted-foreground hover:bg-secondary/60"
+                    sort === s
+                      ? "bg-secondary font-semibold"
+                      : "text-muted-foreground hover:bg-secondary/60"
                   }`}
                 >
                   {s}
@@ -145,7 +148,8 @@ function Discover() {
 
           <div>
             <p className="mb-5 text-sm text-muted-foreground">
-              Showing <span className="font-semibold text-foreground">{results.length}</span> stories
+              Showing <span className="font-semibold text-foreground">{results.length}</span>{" "}
+              stories
             </p>
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {results.map((s, i) => (

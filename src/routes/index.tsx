@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowRight, Check, Flame, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Award, Check, Flame, Zap } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StoryCard } from "@/components/story-card";
@@ -19,7 +19,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Storyvault — Find a story for right now" },
       {
         property: "og:description",
-        content: "Short fiction for the in-between moments. Discover something lovely, strange or true.",
+        content:
+          "Short fiction for the in-between moments. Discover something lovely, strange or true.",
       },
     ],
   }),
@@ -59,7 +60,7 @@ function Home() {
       <section className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-16 md:grid-cols-2 md:py-24">
         <div className="animate-fade-up">
           <p className="eyebrow flex items-center gap-2">
-            <Sparkles className="h-3.5 w-3.5" /> A little room for your imagination
+            <Zap className="h-3.5 w-3.5" /> A little room for your imagination
           </p>
           <h1 className="mt-5 font-display text-5xl leading-[1.05] md:text-6xl">
             Find a story
@@ -109,7 +110,7 @@ function Home() {
           <div className="animate-float relative overflow-hidden rounded-xl border border-border bg-card shadow-lift">
             <div className="flex items-center justify-between px-5 pt-4 text-xs text-muted-foreground">
               <span>Editor's pick · {featured.minutes} min</span>
-              <Star className="h-4 w-4 fill-clay text-clay" />
+              <Award className="h-4 w-4 fill-clay text-clay" />
             </div>
             <div className="mt-3 aspect-[16/9] overflow-hidden">
               <img

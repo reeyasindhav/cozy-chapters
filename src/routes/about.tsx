@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Clock, Feather, Heart, Sparkles } from "lucide-react";
+import { ArrowRight, Clock, Feather, Heart, Zap } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ const values = [
     body: "Every story carries a real read-time badge. No infinite scroll, no cliffhanger traps — just an honest estimate so you can start and actually finish.",
   },
   {
-    icon: Sparkles,
+    icon: Zap,
     title: "Mood before genre",
     body: "Genre tells you what happens. Mood tells you how it feels. We index the second one, because that's what you're actually shopping for at 11pm.",
   },

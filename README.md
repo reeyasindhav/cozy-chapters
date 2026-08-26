@@ -8,11 +8,9 @@ the final site should be production ready with functional implementation. It sho
 
 Add animations to the site, and please give a simple user flow in the response
 
-and iterate the design from the given image and also use open sources images online do not create any type of images 
+and iterate the design from the given image and also use open sources images online do not create any type of images
 
 Design Idea: Cozy literacy aesthetic, story cards with mood tags, estimated read time badges, author profile pages, reading streak tracker.
-
-
 
 Problem Statement:
 

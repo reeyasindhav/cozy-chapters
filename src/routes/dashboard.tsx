@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BookOpen, Clock, Flame, PenLine, Sparkles } from "lucide-react";
+import { BookOpen, Clock, Flame, PenLine, Zap } from "lucide-react";
 import { RequireAuth } from "@/components/require-auth";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -36,7 +36,10 @@ const done = [true, true, true, true, true, false, false];
 function Dashboard() {
   const { user, bookmarks } = useAuth();
   const continueStory = stories[1]!;
-  const saved = bookmarks.map((s) => getStory(s)).filter(Boolean).slice(0, 3);
+  const saved = bookmarks
+    .map((s) => getStory(s))
+    .filter(Boolean)
+    .slice(0, 3);
   const suggestions = stories.slice(2, 5);
 
   return (
@@ -79,7 +82,11 @@ function Dashboard() {
             <p className="mt-2 text-xs text-muted-foreground">
               62% done · about {Math.max(1, Math.round(continueStory.minutes * 0.38))} min left
             </p>
-            <Link to="/stories/$slug" params={{ slug: continueStory.slug }} className="mt-5 inline-block">
+            <Link
+              to="/stories/$slug"
+              params={{ slug: continueStory.slug }}
+              className="mt-5 inline-block"
+            >
               <Button className="rounded-full px-6">Continue story</Button>
             </Link>
           </div>
@@ -110,7 +117,7 @@ function Dashboard() {
         <div className="mt-14 flex items-end justify-between">
           <div>
             <p className="eyebrow flex items-center gap-2">
-              <Sparkles className="h-3.5 w-3.5" /> Picked for your mood
+              <Zap className="h-3.5 w-3.5" /> Picked for your mood
             </p>
             <h2 className="mt-2 font-display text-3xl">Next up</h2>
           </div>
