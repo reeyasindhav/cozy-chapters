@@ -10,33 +10,93 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthorsRouteImport } from './routes/authors'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as AuthorsIndexRouteImport } from './routes/authors.index'
+import { Route as AuthorsSlugRouteImport } from './routes/authors.$slug'
+import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthorsRoute = AuthorsRouteImport.update({
+  id: '/authors',
+  path: '/authors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthorsRoute,
+} as any)
+const AuthorsSlugRoute = AuthorsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AuthorsRoute,
+} as any)
+const StoriesSlugRoute = StoriesSlugRouteImport.update({
+  id: '/stories/$slug',
+  path: '/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/authors': typeof AuthorsRouteWithChildren
+  '/discover': typeof DiscoverRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/authors/': typeof AuthorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/authors': typeof AuthorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/authors': typeof AuthorsRouteWithChildren
+  '/discover': typeof DiscoverRoute
+  '/authors/$slug': typeof AuthorsSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/authors/': typeof AuthorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/authors'
+    | '/discover'
+    | '/authors/$slug'
+    | '/stories/$slug'
+    | '/authors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/discover' | '/authors/$slug' | '/stories/$slug' | '/authors'
+  id:
+    | '__root__'
+    | '/'
+    | '/authors'
+    | '/discover'
+    | '/authors/$slug'
+    | '/stories/$slug'
+    | '/authors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthorsRoute: typeof AuthorsRouteWithChildren
+  DiscoverRoute: typeof DiscoverRoute
+  StoriesSlugRoute: typeof StoriesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +108,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/authors': {
+      id: '/authors'
+      path: '/authors'
+      fullPath: '/authors'
+      preLoaderRoute: typeof AuthorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/authors/': {
+      id: '/authors/'
+      path: '/'
+      fullPath: '/authors/'
+      preLoaderRoute: typeof AuthorsIndexRouteImport
+      parentRoute: typeof AuthorsRoute
+    }
+    '/authors/$slug': {
+      id: '/authors/$slug'
+      path: '/$slug'
+      fullPath: '/authors/$slug'
+      preLoaderRoute: typeof AuthorsSlugRouteImport
+      parentRoute: typeof AuthorsRoute
+    }
+    '/stories/$slug': {
+      id: '/stories/$slug'
+      path: '/stories/$slug'
+      fullPath: '/stories/$slug'
+      preLoaderRoute: typeof StoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthorsRouteChildren {
+  AuthorsSlugRoute: typeof AuthorsSlugRoute
+  AuthorsIndexRoute: typeof AuthorsIndexRoute
+}
+
+const AuthorsRouteChildren: AuthorsRouteChildren = {
+  AuthorsSlugRoute: AuthorsSlugRoute,
+  AuthorsIndexRoute: AuthorsIndexRoute,
+}
+
+const AuthorsRouteWithChildren =
+  AuthorsRoute._addFileChildren(AuthorsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthorsRoute: AuthorsRouteWithChildren,
+  DiscoverRoute: DiscoverRoute,
+  StoriesSlugRoute: StoriesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
