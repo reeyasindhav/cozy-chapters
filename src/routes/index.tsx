@@ -49,6 +49,7 @@ function Home() {
 
   const featured = stories[0]!;
   const featuredAuthor = getAuthor(featured.author)!;
+  const topAuthor = authors[0]!;
 
   return (
     <div className="paper min-h-screen">
