@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthorsRouteImport } from './routes/authors'
 import { Route as CollectionsRouteImport } from './routes/collections'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
@@ -38,6 +39,11 @@ const AuthorsRoute = AuthorsRouteImport.update({
 const CollectionsRoute = CollectionsRouteImport.update({
   id: '/collections',
   path: '/collections',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/authors': typeof AuthorsRouteWithChildren
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/authors': typeof AuthorsRouteWithChildren
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/authors'
     | '/collections'
+    | '/dashboard'
     | '/discover'
     | '/login'
     | '/signup'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/collections'
+    | '/dashboard'
     | '/discover'
     | '/login'
     | '/signup'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/authors'
     | '/collections'
+    | '/dashboard'
     | '/discover'
     | '/login'
     | '/signup'
@@ -150,6 +162,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthorsRoute: typeof AuthorsRouteWithChildren
   CollectionsRoute: typeof CollectionsRoute
+  DashboardRoute: typeof DashboardRoute
   DiscoverRoute: typeof DiscoverRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       path: '/collections'
       fullPath: '/collections'
       preLoaderRoute: typeof CollectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -249,6 +269,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthorsRoute: AuthorsRouteWithChildren,
   CollectionsRoute: CollectionsRoute,
+  DashboardRoute: DashboardRoute,
   DiscoverRoute: DiscoverRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
