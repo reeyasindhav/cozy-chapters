@@ -15,6 +15,7 @@ import { Route as AuthorsRouteImport } from './routes/authors'
 import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthorsIndexRouteImport } from './routes/authors.index'
 import { Route as AuthorsSlugRouteImport } from './routes/authors.$slug'
 import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
@@ -49,6 +50,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors/': typeof AuthorsIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors': typeof AuthorsIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors/': typeof AuthorsIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/discover'
     | '/login'
+    | '/signup'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/discover'
     | '/login'
+    | '/signup'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/collections'
     | '/discover'
     | '/login'
+    | '/signup'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors/'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   CollectionsRoute: typeof CollectionsRoute
   DiscoverRoute: typeof DiscoverRoute
   LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
   StoriesSlugRoute: typeof StoriesSlugRoute
 }
 
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/authors/': {
       id: '/authors/'
       path: '/'
@@ -231,6 +251,7 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionsRoute: CollectionsRoute,
   DiscoverRoute: DiscoverRoute,
   LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
   StoriesSlugRoute: StoriesSlugRoute,
 }
 export const routeTree = rootRouteImport
