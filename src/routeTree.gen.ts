@@ -13,8 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthorsRouteImport } from './routes/authors'
 import { Route as CollectionsRouteImport } from './routes/collections'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as WriteRouteImport } from './routes/write'
 import { Route as AuthorsIndexRouteImport } from './routes/authors.index'
 import { Route as AuthorsSlugRouteImport } from './routes/authors.$slug'
 import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
@@ -39,14 +43,34 @@ const CollectionsRoute = CollectionsRouteImport.update({
   path: '/collections',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiscoverRoute = DiscoverRouteImport.update({
   id: '/discover',
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WriteRoute = WriteRouteImport.update({
+  id: '/write',
+  path: '/write',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
@@ -70,8 +94,12 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/authors': typeof AuthorsRouteWithChildren
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/write': typeof WriteRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors/': typeof AuthorsIndexRoute
@@ -80,8 +108,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/write': typeof WriteRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors': typeof AuthorsIndexRoute
@@ -92,8 +124,12 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/authors': typeof AuthorsRouteWithChildren
   '/collections': typeof CollectionsRoute
+  '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/write': typeof WriteRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/authors/': typeof AuthorsIndexRoute
@@ -105,8 +141,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/authors'
     | '/collections'
+    | '/dashboard'
     | '/discover'
+    | '/library'
     | '/login'
+    | '/signup'
+    | '/write'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors/'
@@ -115,8 +155,12 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/collections'
+    | '/dashboard'
     | '/discover'
+    | '/library'
     | '/login'
+    | '/signup'
+    | '/write'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors'
@@ -126,8 +170,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/authors'
     | '/collections'
+    | '/dashboard'
     | '/discover'
+    | '/library'
     | '/login'
+    | '/signup'
+    | '/write'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors/'
@@ -138,8 +186,12 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthorsRoute: typeof AuthorsRouteWithChildren
   CollectionsRoute: typeof CollectionsRoute
+  DashboardRoute: typeof DashboardRoute
   DiscoverRoute: typeof DiscoverRoute
+  LibraryRoute: typeof LibraryRoute
   LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
+  WriteRoute: typeof WriteRoute
   StoriesSlugRoute: typeof StoriesSlugRoute
 }
 
@@ -173,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/discover': {
       id: '/discover'
       path: '/discover'
@@ -180,11 +239,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/write': {
+      id: '/write'
+      path: '/write'
+      fullPath: '/write'
+      preLoaderRoute: typeof WriteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/authors/': {
@@ -229,8 +309,12 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthorsRoute: AuthorsRouteWithChildren,
   CollectionsRoute: CollectionsRoute,
+  DashboardRoute: DashboardRoute,
   DiscoverRoute: DiscoverRoute,
+  LibraryRoute: LibraryRoute,
   LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
+  WriteRoute: WriteRoute,
   StoriesSlugRoute: StoriesSlugRoute,
 }
 export const routeTree = rootRouteImport

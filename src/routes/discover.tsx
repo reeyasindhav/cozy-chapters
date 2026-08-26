@@ -108,7 +108,7 @@ function Discover() {
               min={3}
               max={12}
               step={1}
-              onValueChange={([v]) => setMaxMin(v)}
+              onValueChange={([v]) => setMaxMin(v ?? 3)}
               className="mt-4"
             />
 

@@ -47,8 +47,9 @@ function Home() {
       .slice(0, 6);
   }, [mood, length]);
 
-  const featured = stories[0];
+  const featured = stories[0]!;
   const featuredAuthor = getAuthor(featured.author)!;
+  const topAuthor = authors[0]!;
 
   return (
     <div className="paper min-h-screen">
@@ -234,7 +235,7 @@ function Home() {
         <div className="grid items-center gap-10 rounded-2xl bg-moss/60 p-10 md:grid-cols-[1fr_1.2fr_0.8fr]">
           <div className="hidden justify-center md:flex">
             <img
-              src={authors[0].cover}
+              src={topAuthor.cover}
               alt=""
               className="h-48 w-48 rounded-full object-cover shadow-soft"
             />
@@ -258,12 +259,12 @@ function Home() {
           </div>
           <div className="border-l border-border/60 pl-6">
             <span className="text-xs text-muted-foreground">01</span>
-            <img src={authors[0].avatar} alt="" className="mt-4 h-12 w-12 rounded-full" />
-            <h3 className="mt-4 font-display text-xl">{authors[0].name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{authors[0].tagline}</p>
+            <img src={topAuthor.avatar} alt="" className="mt-4 h-12 w-12 rounded-full" />
+            <h3 className="mt-4 font-display text-xl">{topAuthor.name}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{topAuthor.tagline}</p>
             <Link
               to="/authors/$slug"
-              params={{ slug: authors[0].slug }}
+              params={{ slug: topAuthor.slug }}
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
             >
               View profile <ArrowRight className="h-4 w-4" />

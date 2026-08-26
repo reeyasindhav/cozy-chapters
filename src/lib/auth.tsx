@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signIn = useCallback((email: string, name?: string) => {
     const next: User = {
       email,
-      name: name?.trim() || email.split("@")[0].replace(/[._-]/g, " "),
+      name: name?.trim() || email.split("@")[0]!.replace(/[._-]/g, " "),
       avatar: "https://i.pravatar.cc/200?img=15",
     };
     localStorage.setItem(KEY, JSON.stringify(next));
