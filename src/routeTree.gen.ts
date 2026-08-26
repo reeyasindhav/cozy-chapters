@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthorsRouteImport } from './routes/authors'
+import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AuthorsIndexRouteImport } from './routes/authors.index'
 import { Route as AuthorsSlugRouteImport } from './routes/authors.$slug'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthorsRoute = AuthorsRouteImport.update({
   id: '/authors',
   path: '/authors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsRoute = CollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -50,6 +56,7 @@ const StoriesSlugRoute = StoriesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/authors': typeof AuthorsRouteWithChildren
+  '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -66,6 +74,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/authors': typeof AuthorsRouteWithChildren
+  '/collections': typeof CollectionsRoute
   '/discover': typeof DiscoverRoute
   '/authors/$slug': typeof AuthorsSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
@@ -76,16 +85,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/authors'
+    | '/collections'
     | '/discover'
     | '/authors/$slug'
     | '/stories/$slug'
     | '/authors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover' | '/authors/$slug' | '/stories/$slug' | '/authors'
+  to:
+    | '/'
+    | '/collections'
+    | '/discover'
+    | '/authors/$slug'
+    | '/stories/$slug'
+    | '/authors'
   id:
     | '__root__'
     | '/'
     | '/authors'
+    | '/collections'
     | '/discover'
     | '/authors/$slug'
     | '/stories/$slug'
@@ -95,6 +112,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthorsRoute: typeof AuthorsRouteWithChildren
+  CollectionsRoute: typeof CollectionsRoute
   DiscoverRoute: typeof DiscoverRoute
   StoriesSlugRoute: typeof StoriesSlugRoute
 }
@@ -113,6 +131,13 @@ declare module '@tanstack/react-router' {
       path: '/authors'
       fullPath: '/authors'
       preLoaderRoute: typeof AuthorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections': {
+      id: '/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -162,6 +187,7 @@ const AuthorsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthorsRoute: AuthorsRouteWithChildren,
+  CollectionsRoute: CollectionsRoute,
   DiscoverRoute: DiscoverRoute,
   StoriesSlugRoute: StoriesSlugRoute,
 }
